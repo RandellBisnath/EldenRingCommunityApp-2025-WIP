@@ -1,0 +1,27 @@
+﻿@model List<Tutorial>
+
+@{
+    ViewData["Title"] = "View Tutorials Page";
+}
+
+<div class="text-center">
+	<h1 class="display-4">Tutorials</h1>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+	<div class="container">
+		<a class="btn btn-primary" asp-action="Create">Upload Tutorial</a>
+		<a class="btn btn-primary" asp-action="List">All Tutorials</a>
+	</div>
+}
+
+<div class="container">
+	@foreach (Tutorial t in Model)
+	{
+		<p>@t.Title</p>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/@t.YouTubeVideoId?si=2sbdloTUuH5rzLQn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+		<p>Description: @t.Description</p>
+		<p style="margin: 20px;">---------------------------------------------------------------------------</p>
+	}
+</div>

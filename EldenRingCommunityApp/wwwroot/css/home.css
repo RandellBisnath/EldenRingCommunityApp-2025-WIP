@@ -1,0 +1,27 @@
+﻿.homepage-img {
+    align-self: flex-end;
+    height: 370px;
+    object-fit: cover;
+    width: 550px;
+}
+.flex-row {
+    align-items: flex-start;
+    display: flex;
+    gap: 51px;
+    height: 406px;
+    margin-left: 95.0px;
+    margin-top: 153px;
+    min-width: 1215px;
+}
+
+.home-text {
+    color: white;
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-m);
+    font-weight: 400;
+}
+
+.home-card {
+    width: 100%;
+    background-color: #0a0a0a;
+}

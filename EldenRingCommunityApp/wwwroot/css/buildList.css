@@ -1,0 +1,33 @@
+﻿.listBody {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.listAlignRight {
+    position: relative;
+    float: right;
+    padding-right: 20px
+}
+
+.btn-List {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    width: fit-content;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+
+.container p {
+    color: #333;
+    line-height: 1.6;
+}
+

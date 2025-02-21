@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - EldenRingCommunityApp</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/chatroom.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/createbuild.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/desktop-1.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/styleguide.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/globals.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+	<link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
+	<meta name="og:type" content="website" />
+	<meta name="twitter:card" content="photo" />
+</head>
+<body>
+	<header>
+		<nav class="elden-nav">
+
+			<div>
+				<div>
+					<a asp-action="Index" asp-controller="Home" class="button">HOME</a> | 
+					<a asp-action="Privacy" asp-controller="Home" class="button">ABOUT</a> | 
+					<a asp-action="List" asp-controller="Build" class="button">BUILD</a> | 
+					<a asp-action="List" asp-controller="Tutorial" class="button">TUTORIALS</a> | 
+					<a asp-action="News" asp-controller="News" class="button">NEWS</a> | 
+					<a asp-action="Chatroom" asp-controller="Chat" class="button">CHATROOM</a> | 
+					@if (!User.Identity.IsAuthenticated)
+					{
+						<a asp-action="SignUp" asp-controller="User" class="button">SIGN UP</a> <span> | </span>
+						<a asp-action="Login" asp-controller="User" class="button">LOGIN</a>
+
+					}
+					else if (User.Identity.IsAuthenticated)
+					{
+						<a asp-action="Logout" asp-controller="User" class="button">LOGOUT</a>
+					}
+				</div>
+			</div>
+		</nav>
+	</header>
+
+
+
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

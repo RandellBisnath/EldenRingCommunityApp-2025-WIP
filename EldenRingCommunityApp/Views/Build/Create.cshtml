@@ -1,0 +1,186 @@
+﻿@model BuildViewModel;
+
+@{
+	ViewData["Title"] = "Create Build Page";
+}
+
+<div class="text-center instructions-container">
+	<h1 class="display-4">Welcome to the Build Calculator</h1>
+	<p>Welcome to the Build calculator, where you can select the combinations you'll use in the game, including your equipment, spells, and personal attribute allocations. Then, you can showcase them to other players. Click on the item to choose from all the equipment or items for that slot. Once you're done, click "create" to save your setup.</p>
+</div>
+
+<form asp-action="Create" method="post">
+	<div asp-validation-summary="All"
+		 class="text-danger">
+	</div>
+	<div class="form-group">
+		<label asp-for="Name">Name: </label>
+		<input asp-for="Name" type="text" class="form-control">
+		<br />
+		<label asp-for="StartingClasses">Starting Class: </label>
+		<select class="form-control" asp-for="SelectedStartingClass" asp-items="@(new SelectList(Model.StartingClasses, nameof(StartingClass.StartingClassID), nameof(StartingClass.Name)))">
+			<option>None</option>
+		</select>
+	</div>
+	<div class="d-lg-flex flex-row">
+
+		<div class="p-lg-1 flex-grow-1">
+				<div class="form-group">
+					<label asp-for="Vigor">Vigor: </label>
+				<input asp-for="Vigor" type="number" min="0" max="99" class="form-control">
+				<label asp-for="Mind">Mind: </label>
+				<input asp-for="Mind" type="number" min="0" max="99" class="form-control">
+				<label asp-for="Endurance">Endurance: </label>
+				<input asp-for="Endurance" type="number" min="0" max="99" class="form-control">
+				<label asp-for="Strength">Strength: </label>
+				<input asp-for="Strength" type="number" min="0" max="99" class="form-control">
+				<label asp-for="Dexterity">Dexterity: </label>
+				<input asp-for="Dexterity" type="number" min="0" max="99" class="form-control">
+				<label asp-for="Intelligence">Intelligence: </label>
+				<input asp-for="Intelligence" type="number" min="0" max="99" class="form-control">
+				<label asp-for="Faith">Faith: </label>
+				<input asp-for="Faith" type="number" min="0" max="99" class="form-control">
+				<label asp-for="Arcane">Arcane: </label>
+				<input asp-for="Arcane" type="number" min="0" max="99" class="form-control">
+			</div>
+			
+
+		</div>
+
+
+		<div class="p-lg-1 flex-grow-1">
+
+			<div class="container">
+
+				<div class="row">
+
+					<div class="container">
+
+						<div class="row">
+
+							<div class="col">
+								<label asp-for="Helmets">Select Helmets:</label>
+								<select class="form-select input-size" asp-for="SelectedHelmet" asp-items="@(new SelectList(Model.Helmets, nameof(Helmet.HelmetID), nameof(Helmet.Name)))">
+								</select>
+							</div>
+
+							<div class="col">
+								<label asp-for="ChestArmors">Select Chest Armor:</label>
+								<select class="form-select input-size" asp-for="SelectedChestArmor" asp-items="@(new SelectList(Model.ChestArmors, nameof(ChestArmor.ChestArmorID), nameof(ChestArmor.Name)))">
+								</select>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col">
+								<label asp-for="Gauntlets">Select Gauntlets:</label>
+								<select class="form-select input-size" asp-for="SelectedGauntlets" asp-items="@(new SelectList(Model.Gauntlets, nameof(Gauntlets.GauntletsID), nameof(Gauntlets.Name)))">
+								</select>
+							</div>
+
+							<div class="col">
+								<label asp-for="LegArmors">Select Leg Armor:</label>
+								<select class="form-select input-size" asp-for="SelectedLegArmor" asp-items="@(new SelectList(Model.LegArmors, nameof(LegArmor.LegArmorID), nameof(LegArmor.Name)))">
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="container">
+
+						<label>Weapons</label>
+
+						<div class="row">
+							@for (int i = 0; i < 2; i++)
+							{
+								<div class="col">
+									<select class="form-select input-size" asp-for="SelectedWeapons[i]" asp-items="@(new SelectList(Model.Weapons, nameof(Weapon.WeaponID), nameof(Weapon.Name)))">
+									</select>
+								</div>
+							}
+						</div>
+
+						<div class="row">
+							@for (int i = 0; i < 2; i++)
+							{
+								<div class="col">
+									<select class="form-select input-size" asp-for="SelectedWeapons[i+2]" asp-items="@(new SelectList(Model.Weapons, nameof(Weapon.WeaponID), nameof(Weapon.Name)))">
+									</select>
+								</div>
+							}
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="p-lg-1 flex-grow-1">
+
+			<div class="flex-row d-flex justify-content-lg-center container">
+
+				@for (int i = 0; i < 4; i++)
+				{
+					<div class="p-2">
+						<label asp-for="Talismans">Talisman @i: </label>
+						<select class="form-control input-size" asp-for="SelectedTalismans[i]" asp-items="@(new SelectList(Model.Talismans, nameof(Talisman.TalismanID), nameof(Talisman.Name)))">
+						</select>
+					</div>
+				}
+
+			</div>
+
+			<div class="flex-grow-1 p-lg-1 align-items-end">
+
+				<div class="container">
+					<label>Spells Here:</label>
+					<div class="row">
+						@for (int i = 0; i < 4; i++)
+						{
+							<div class="col input-size">
+								<select class="form-select input-size" asp-for="SelectedSpells[i]" asp-items="@(new SelectList(Model.Spells, nameof(Spell.SpellID), nameof(Spell.Name)))">
+								</select>
+							</div>
+						}
+					</div>
+					<div class="row">
+						@for (int i = 0; i < 4; i++)
+						{
+							<div class="col input-size">
+								<select class="form-select input-size" asp-for="SelectedSpells[i+4]" asp-items="@(new SelectList(Model.Spells, nameof(Spell.SpellID), nameof(Spell.Name)))">
+								</select>
+							</div>
+						}
+					</div>
+
+					<div class="row">
+						@for (int i = 0; i < 4; i++)
+						{
+							<div class="col input-size">
+								<select class="form-select input-size" asp-for="SelectedSpells[i+8]" asp-items="@(new SelectList(Model.Spells, nameof(Spell.SpellID), nameof(Spell.Name)))">
+								</select>
+							</div>
+						}
+					</div>
+
+
+					<div class="container">
+						<input type="hidden" />
+						<button type="submit" class="btn btn-primary">
+							Create
+						</button>
+						<a asp-controller="Build" asp-action="List"
+						   class="btn btn-primary">Cancel</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</form>

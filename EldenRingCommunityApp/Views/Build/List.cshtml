@@ -1,0 +1,45 @@
+﻿@model ListBuildViewModel
+
+@{
+	ViewData["Title"] = "View Builds Page";
+}
+
+<div class="text-center">
+	<h1 class="display-4">View Builds</h1>
+</div>
+<div class="listBody">
+	@if (User.Identity.IsAuthenticated)
+	{
+		<div class="container">
+			<a class="btn btn-primary" asp-action="Create">Create Build</a>
+			<a class="btn btn-primary" asp-action="MyBuilds">My Builds</a>
+			<a class="btn btn-primary" asp-action="List">All Builds</a>
+		</div>
+	}
+
+	@foreach (Build b in Model.Builds)
+	{
+
+		<div class="d-lg-flex flex-row container">
+			<div class="p-lg-1 flex-grow-1">
+
+				<div class="row">
+					<h1 class="">@b.Name</h1>
+					<h2>@b.StartingClass.Name</h2>
+					<p>Level: @b.getLevel()</p>
+				</div>
+			</div>
+			<div class="p-lg-1 flex-grow-1">
+
+				<div class="row listAlignRight">
+					<a class="btn btn-primary btn-List" asp-action="View" asp-route-id="@b.BuildID">View</a>
+					@if (b.UserID == Model.CurrentUser)
+					{
+						<a class="btn btn-primary btn-List" asp-action="Update" asp-route-id="@b.BuildID">Update</a>
+						<a class="btn btn-primary btn-List" asp-action="Delete" asp-route-id="@b.BuildID">Delete</a>
+					}
+				</div>
+			</div>
+		</div>
+	}
+</div>
