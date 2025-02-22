@@ -22,6 +22,31 @@
 }
 
 .home-card {
-    width: 100%;
-    background-color: #0a0a0a;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
 }
+
+    .home-card h1 {
+        font-size: 50px;
+        text-shadow: 0 0 20px rgba(255, 223, 100, 0.8);
+    }
+    .home-card p {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .home-card a{
+        color: #1A1A1A;
+        display:inline-block;
+        background: #C4A000;
+        padding: 10px 20px;
+        text-decoration:none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .home-card a:hover {
+        background: #EED97E;
+        box-shadow: 0 0 15px rgba(255, 223, 100, 0.8);
+    }
